@@ -1,0 +1,17 @@
+
+cd /var/www/WEALTHI_ANALYTICS
+
+git pull origin main
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+sudo systemctl restart wealthi_analytics
+
+sudo systemctl status wealthi_analytics
+
+==========================================not mandatory
+sudo nginx -t
+sudo systemctl reload nginx
+
