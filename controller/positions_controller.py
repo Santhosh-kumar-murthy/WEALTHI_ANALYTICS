@@ -59,12 +59,18 @@ class PositionsController:
         with closing(self.conn.cursor()) as cursor:
             if status == "active":
                 cursor.execute('''
-                        SELECT * FROM idx_positions WHERE position_exit_time IS NULL ORDER BY position_entry_time DESC
-                    ''')
+                    SELECT * FROM idx_positions 
+                    WHERE position_exit_time IS NULL 
+                      AND DATE(position_entry_time) = CURRENT_DATE
+                    ORDER BY position_entry_time DESC
+                ''')
             elif status == "closed":
                 cursor.execute('''
-                        SELECT * FROM idx_positions WHERE position_exit_time IS NOT NULL ORDER BY position_entry_time DESC
-                    ''')
+                    SELECT * FROM idx_positions 
+                    WHERE position_exit_time IS NOT NULL 
+                      AND DATE(position_entry_time) = CURRENT_DATE
+                    ORDER BY position_entry_time DESC
+                ''')
             return cursor.fetchall()
 
     def get_option_positions(self, position_type, status):
@@ -72,11 +78,17 @@ class PositionsController:
             if status == "active":
                 cursor.execute('''
                     SELECT * FROM opt_positions 
-                    WHERE position_type = %s AND position_exit_time IS NULL ORDER BY position_entry_time DESC
+                    WHERE position_type = %s 
+                      AND position_exit_time IS NULL 
+                      AND DATE(position_entry_time) = CURRENT_DATE
+                    ORDER BY position_entry_time DESC
                 ''', (position_type,))
             elif status == "closed":
                 cursor.execute('''
                     SELECT * FROM opt_positions 
-                    WHERE position_type = %s AND position_exit_time IS NOT NULL ORDER BY position_entry_time DESC
+                    WHERE position_type = %s 
+                      AND position_exit_time IS NOT NULL 
+                      AND DATE(position_entry_time) = CURRENT_DATE
+                    ORDER BY position_entry_time DESC
                 ''', (position_type,))
             return cursor.fetchall()
