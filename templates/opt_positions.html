@@ -84,7 +84,13 @@
                 <td>{{ position.position_exit_price }}</td>
                 <td>{{ position.position_exit_time }}</td>
                 <td>{{ position.profit}}</td>
-                <td>{{ position.profit * position.lot_size}}</td>
+                <td>
+                    {% if position.profit and position.lot_size %}
+                    {{ position.profit * position.lot_size }}
+                    {% else %}
+                    0
+                    {% endif %}
+                </td>
                 <td>{{ position.lot_size }}</td>
                 <td>{{ position.expiry }}</td>
                 <td>{{ position.exit_reason }}</td>
@@ -136,6 +142,7 @@
         link.click();
         document.body.removeChild(link);
     });
+
 
 
 
