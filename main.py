@@ -4,7 +4,6 @@ from controller.positions_controller import PositionsController
 
 app = Flask(__name__)
 
-positions_controller = PositionsController()
 
 
 @app.route('/')
@@ -14,6 +13,7 @@ def index():
 
 @app.route('/idx_positions')
 def idx_positions():
+    positions_controller = PositionsController()
     status = request.args.get('status')
     if status not in ['active', 'closed']:
         return jsonify({'error': 'Invalid status. Use "active" or "closed".'}), 400
@@ -23,6 +23,7 @@ def idx_positions():
 
 @app.route('/opt_positions')
 def opt_positions():
+    positions_controller = PositionsController()
     status = request.args.get('status')
     position_type = request.args.get('position_type')
     if position_type == '1':
