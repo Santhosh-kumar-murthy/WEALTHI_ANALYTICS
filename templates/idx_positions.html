@@ -82,7 +82,7 @@
                 <td>{{ position.position_exit_price }}</td>
                 <td>{{ position.position_exit_time }}</td>
                 <td>{{ position.exit_reason }}</td>
-                <td class="{{ 'text-success' if position.profit > 0 else 'text-danger' }}">
+                <td class="{{ 'text-success' if position.profit and position.profit > 0 else 'text-danger' }}">
                     {{ position.profit | round(2) }}
                 </td>
             </tr>
@@ -132,6 +132,7 @@
         link.click();
         document.body.removeChild(link);
     });
+
 
 </script>
 </body>
