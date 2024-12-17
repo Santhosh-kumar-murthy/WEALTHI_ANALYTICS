@@ -83,8 +83,9 @@
                 <td>{{ position.position_exit_time }}</td>
                 <td>{{ position.exit_reason }}</td>
                 <td class="{{ 'text-success' if position.profit and position.profit > 0 else 'text-danger' }}">
-                    {{ position.profit | round(2) }}
+                    {{ position.profit|default(0) | round(2) }}
                 </td>
+
             </tr>
             {% endfor %}
             </tbody>
@@ -132,6 +133,7 @@
         link.click();
         document.body.removeChild(link);
     });
+
 
 
 </script>

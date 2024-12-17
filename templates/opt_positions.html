@@ -84,11 +84,12 @@
                 <td>{{ position.position_exit_price }}</td>
                 <td>{{ position.position_exit_time }}</td>
                 <td class="{{ 'text-success' if position.profit and position.profit > 0 else 'text-danger' }}">
-                    {{ position.profit | round(2) }}
+                    {{ position.profit | default(0) | round(2) }}
                 </td>
-                <td class="{{ 'text-success' if position.profit and position.profit * position.lot_size > 0 else 'text-danger' }}">
-                    {{ (position.profit * position.lot_size) | round(2) }}
+                <td class="{{ 'text-success' if position.profit and position.lot_size and position.profit * position.lot_size > 0 else 'text-danger' }}">
+                    {{ (position.profit|default(0) * position.lot_size|default(0)) | round(2) }}
                 </td>
+
                 <td>{{ position.lot_size }}</td>
                 <td>{{ position.expiry }}</td>
                 <td>{{ position.exit_reason }}</td>
@@ -140,6 +141,7 @@
         link.click();
         document.body.removeChild(link);
     });
+
 </script>
 </body>
 </html>
