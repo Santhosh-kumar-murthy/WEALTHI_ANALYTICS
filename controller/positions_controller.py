@@ -1,5 +1,3 @@
-from contextlib import closing
-
 import pymysql
 from pymysql.cursors import DictCursor
 
@@ -12,7 +10,7 @@ class PositionsController:
         self.create_positions_table()
 
     def create_positions_table(self):
-        with closing(self.conn.cursor()) as cursor:
+        with self.conn.cursor() as cursor:
             cursor.execute('''
                             CREATE TABLE IF NOT EXISTS idx_positions (
                                 idx_position_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,7 +54,7 @@ class PositionsController:
             self.conn.commit()
 
     def get_index_positions(self, status):
-        with closing(self.conn.cursor()) as cursor:
+        with self.conn.cursor() as cursor:
             if status == "active":
                 cursor.execute('''
                     SELECT * FROM idx_positions 
@@ -74,7 +72,7 @@ class PositionsController:
             return cursor.fetchall()
 
     def get_option_positions(self, position_type, status):
-        with closing(self.conn.cursor()) as cursor:
+        with self.conn.cursor() as cursor:
             if status == "active":
                 cursor.execute('''
                     SELECT * FROM opt_positions 
