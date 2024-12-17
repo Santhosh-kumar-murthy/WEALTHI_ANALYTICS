@@ -82,11 +82,7 @@
                 <td>{{ position.position_exit_price }}</td>
                 <td>{{ position.position_exit_time }}</td>
                 <td>{{ position.exit_reason }}</td>
-                <td class="{{ 'text-success' if position.profit and position.profit > 0 else 'text-danger' }}">
-                    {{ position.profit|default(0)|floatformat:2 }}
-                </td>
-
-
+                <td>{{ position.profit }}</td>
             </tr>
             {% endfor %}
             </tbody>

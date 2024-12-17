@@ -83,15 +83,8 @@
                 <td>{{ position.position_entry_time }}</td>
                 <td>{{ position.position_exit_price }}</td>
                 <td>{{ position.position_exit_time }}</td>
-                <td class="{{ 'text-success' if position.profit and position.profit > 0 else 'text-danger' }}">
-                    {{ position.profit|default(0)|floatformat:2 }}
-                </td>
-
-                <td class="{{ 'text-success' if (position.profit|default(0)) * (position.lot_size|default(0)) > 0 else 'text-danger' }}">
-                    {{ (position.profit|default(0) * position.lot_size|default(0))|floatformat:2 }}
-                </td>
-
-
+                <td>{{ position.profit}}</td>
+                <td>{{ position.profit * position.lot_size}}</td>
                 <td>{{ position.lot_size }}</td>
                 <td>{{ position.expiry }}</td>
                 <td>{{ position.exit_reason }}</td>
