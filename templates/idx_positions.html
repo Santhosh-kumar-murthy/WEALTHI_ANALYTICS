@@ -48,6 +48,11 @@
     <div class="mb-3 text-end">
         <button id="exportButton" class="btn btn-primary">Export to CSV</button>
     </div>
+
+    <div class="mb-3 text-end">
+        <strong>Total Profit: </strong><span id="totalProfit">0</span>
+    </div>
+
     <!-- Search Bar -->
     <div class="mb-3">
         <input type="text" id="searchInput" class="form-control" placeholder="Search in table...">
@@ -132,6 +137,21 @@
     });
 
 
+// Calculate and display total profit
+    function calculateTotalProfit() {
+        const profitCells = document.querySelectorAll('.profit');
+        let total = 0;
+
+        profitCells.forEach(cell => {
+            const profitValue = parseFloat(cell.textContent) || 0; // Convert to number, default to 0
+            total += profitValue;
+        });
+
+        document.getElementById('totalProfit').textContent = total.toFixed(2); // Display with 2 decimal places
+    }
+
+    // Call the function to calculate total profit on page load
+    calculateTotalProfit();
 
 
 
