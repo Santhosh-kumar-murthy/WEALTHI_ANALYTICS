@@ -64,6 +64,7 @@
             <tr>
                 <th>ID</th>
                 <th>Index Name</th>
+                <th>Trading Symbol</th>
                 <th>Direction</th>
                 <th>Position Type</th>
                 <th>Entry Price</th>
@@ -81,6 +82,7 @@
             <tr>
                 <td>{{ position.opt_position_id }}</td>
                 <td>{{ position.index_name }}</td>
+                <td>{{ position.zerodha_trading_symbol }}</td>
                 <td>{{ 'LONG' if position.direction == 1 else 'SHORT' }}</td>
                 <td>{{ 'Option Buy' if position.position_type == 1 else 'Option Sell' }}</td>
                 <td>{{ position.position_entry_price }}</td>
